@@ -1,6 +1,6 @@
 import streamlit as st
 from langgraph_backend import get_chatbot, retrieve_all_threads, save_thread
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, AIMessage
 import uuid
 
 chatbot = get_chatbot()
@@ -97,6 +97,11 @@ if prompt := st.chat_input("What is on your mind?"):
                 {"history": [HumanMessage(content=prompt)]},
                 config=CONFIG
             )
+
+            
+             #new
+            #state = chatbot.get_state(CONFIG)
+            #reply = state.values["history"][-1].content
 
             reply = output["history"][-1].content
 
